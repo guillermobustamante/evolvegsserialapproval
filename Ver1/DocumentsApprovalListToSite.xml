@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2022/09/ProvisioningSchema">
+  <pnp:Preferences Generator="PnP.Framework, Version=1.11.30.0, Culture=neutral, PublicKeyToken=0d501f89f11b748c" />
+  <pnp:Templates ID="CONTAINER-TEMPLATE-AB0264EBE0594738B3D7043F1745FAE4">
+    <pnp:ProvisioningTemplate ID="TEMPLATE-AB0264EBE0594738B3D7043F1745FAE4" Version="1" BaseSiteTemplate="GROUP#0" Scope="RootSite">
+      <pnp:Lists>
+        <pnp:ListInstance Title="DocumentsApproval" Description="" DocumentTemplate="{site}/DocumentsApproval/Forms/template.dotx" OnQuickLaunch="true" TemplateType="101" Url="DocumentsApproval" EnableVersioning="true" EnableModeration="true" MinorVersionLimit="0" MaxVersionLimit="500" DraftVersionVisibility="2" TemplateFeatureID="00bfea71-e717-4e80-aa17-d0c71b360101" EnableAttachments="false" DefaultDisplayFormUrl="{site}/DocumentsApproval/Forms/DispForm.aspx" DefaultEditFormUrl="{site}/DocumentsApproval/Forms/EditForm.aspx" DefaultNewFormUrl="{site}/DocumentsApproval/Forms/Upload.aspx" ImageUrl="/_layouts/15/images/itdl.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:PropertyBagEntries>
+            <pnp:PropertyBagEntry Key="IsAttachmentLibrary" Value="0" Overwrite="false" />
+          </pnp:PropertyBagEntries>
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x0101" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{B8FBFC32-1505-45BF-A60C-08D9815C9A47}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Documents" Url="{site}/DocumentsApproval/Forms/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <GroupBy Collapse="FALSE" GroupLimit="30">
+                  <FieldRef Name="DocumentType" />
+                </GroupBy>
+                <OrderBy>
+                  <FieldRef Name="Modified" Ascending="FALSE" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="ID" />
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Approval_x0020_Button" />
+                <FieldRef Name="InvoiceApprovers" />
+                <FieldRef Name="ApprovedProgress" />
+                <FieldRef Name="Sign_x002d_off_x0020_status" />
+                <FieldRef Name="Comments" />
+                <FieldRef Name="TotalApprovers" />
+                <FieldRef Name="TotalApproved" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter>{"additionalRowClass":{"operator":":","operands":[{"operator":"==","operands":["[$Sign_x002d_off_x0020_status]","Rejected"]},"sp-css-backgroundColor-BgCoral sp-field-fontSizeSmall sp-css-color-CoralFont",{"operator":":","operands":[{"operator":"==","operands":["[$Sign_x002d_off_x0020_status]","Approved"]},"sp-css-backgroundColor-BgMintGreen sp-field-fontSizeSmall sp-css-color-MintGreenFont",{"operator":":","operands":[{"operator":"==","operands":["[$Sign_x002d_off_x0020_status]",""]},"sp-css-backgroundColor-BgGold sp-field-fontSizeSmall sp-css-color-GoldFont",""]}]}]},"rowClassTemplateId":"ConditionalView"}
+</CustomFormatter>
+              <ViewData />
+            </View>
+            <View Name="{3D4F0593-67B8-4021-B4DE-0B0235F94008}" Type="HTML" Scope="RecursiveAll" DisplayName="My submissions" Url="{site}/DocumentsApproval/Forms/mysub.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <GroupBy>
+                  <FieldRef Name="_ModerationStatus" Ascending="FALSE" />
+                </GroupBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Editor" />
+                <FieldRef Name="_ModerationStatus" />
+                <FieldRef Name="_ModerationComments" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{FB6FD11C-BA8E-4D00-BECA-A6F981ED2E42}" Type="HTML" Scope="RecursiveAll" DisplayName="Approve/reject Items" Url="{site}/DocumentsApproval/Forms/modview.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <GroupBy>
+                  <FieldRef Name="_ModerationStatus" Ascending="FALSE" />
+                </GroupBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Author" />
+                <FieldRef Name="Editor" />
+                <FieldRef Name="_ModerationStatus" />
+                <FieldRef Name="_ModerationComments" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{8694CCF9-1D6F-488E-8506-3CC7AE08A977}" Type="HTML" DisplayName="MinPageView" Url="{site}/DocumentsApproval/Forms/MinPageView.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <Where>
+                  <Neq>
+                    <FieldRef Name="Sign_x002d_off_x0020_status" />
+                    <Value Type="Text">Approved</Value>
+                  </Neq>
+                </Where>
+                <OrderBy>
+                  <FieldRef Name="LinkFilename" Ascending="TRUE" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="ApprovedProgress" />
+                <FieldRef Name="Approval_x0020_Button" />
+                <FieldRef Name="Sign_x002d_off_x0020_status" />
+                <FieldRef Name="InvoiceApprovers" />
+                <FieldRef Name="TotalApproved" />
+                <FieldRef Name="TotalApprovers" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+            <View Name="{0EF08E3F-B11F-462B-A963-8E8B33E656C9}" Type="HTML" DisplayName="My submissions" Url="{site}/DocumentsApproval/Forms/Formsmysub.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <GroupBy>
+                  <FieldRef Name="_ModerationStatus" Ascending="FALSE" />
+                </GroupBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Editor" />
+                <FieldRef Name="_ModerationStatus" />
+                <FieldRef Name="_ModerationComments" />
+              </ViewFields>
+              <RowLimit Paged="FALSE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{98AEB130-5A77-4F1D-A62D-A7BDAD74FD9B}" Type="HTML" DisplayName="Approve/reject Items" Url="{site}/DocumentsApproval/Forms/Formsmodview.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/dlicon.png?rev=47">
+              <Query>
+                <GroupBy>
+                  <FieldRef Name="_ModerationStatus" Ascending="FALSE" />
+                </GroupBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="DocIcon" />
+                <FieldRef Name="LinkFilename" />
+                <FieldRef Name="Modified" />
+                <FieldRef Name="Author" />
+                <FieldRef Name="Editor" />
+                <FieldRef Name="_ModerationStatus" />
+                <FieldRef Name="_ModerationComments" />
+              </ViewFields>
+              <RowLimit Paged="FALSE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Note" DisplayName="Image Tags_0" StaticName="lcf76f155ced4ddcb4097134ff3c332f" Name="lcf76f155ced4ddcb4097134ff3c332f" ID="{7c51d632-27e0-f6f7-a5d6-ed67b68bd369}" ShowInViewForms="FALSE" Required="FALSE" Hidden="TRUE" CanToggleHidden="TRUE" ColName="ntext8" RowOrdinal="0" Version="2" />
+            <Field Type="UserMulti" DisplayName="Invoice Approvers" EnforceUniqueValues="FALSE" Required="TRUE" Mult="TRUE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" CustomFormatter="{&quot;$schema&quot;:&quot;https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;children&quot;:[{&quot;elmType&quot;:&quot;div&quot;,&quot;children&quot;:[{&quot;forEach&quot;:&quot;personIterator in @currentField&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;padding&quot;:&quot;5px 0px&quot;},&quot;children&quot;:[{&quot;elmType&quot;:&quot;span&quot;,&quot;txtContent&quot;:&quot;[$personIterator.title]&quot;},{&quot;elmType&quot;:&quot;a&quot;,&quot;style&quot;:{&quot;text-decoration&quot;:&quot;none&quot;,&quot;vertical-align&quot;:&quot;middle&quot;},&quot;attributes&quot;:{&quot;iconName&quot;:&quot;Mail&quot;,&quot;class&quot;:&quot;ms-fontColor-themePrimary sp-field-quickAction&quot;,&quot;href&quot;:{&quot;operator&quot;:&quot;+&quot;,&quot;operands&quot;:[&quot;mailto:&quot;,&quot;[$personIterator.email]&quot;,&quot;?subject=Approval Status&amp;body=Hi, how is your approval coming along?.\r\n---\r\n&quot;,&quot;[$personIterator.title]&quot;,&quot;\r\nClick this link for more info. https://evolvegs.sharepoint.com/sites/TestPlan/DocumentsApproval/DispForm.aspx?ID=&quot;,&quot;[$ID]&quot;]}}}]}]}]}&#xD;&#xA;" ID="{96ff58bf-9e3a-4cbb-b7b1-e772be655844}" Name="InvoiceApprovers" StaticName="InvoiceApprovers" ShowField="ImnName" UserSelectionScope="0" UserSelectionMode="PeopleOnly" List="UserInfo" SourceID="{{listid:DocumentsApproval}}" ColName="int1" RowOrdinal="0" Version="4" />
+            <Field Type="Text" DisplayName="Sign-off status" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" ID="{2667bc6f-82fc-4f29-87ad-604e5cb5999c}" Name="Sign_x002d_off_x0020_status" StaticName="_Flow_SignoffStatus" MaxLength="255" SourceID="{{listid:DocumentsApproval}}" ColName="nvarchar15" RowOrdinal="0" Version="1" />
+            <Field Type="Note" DisplayName="Comments" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" Sortable="FALSE" ID="{97bdc38e-64be-43b8-b0e7-05293a7ef7ea}" Name="Comments" StaticName="Comments" RichText="FALSE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" NumLines="6" UnlimitedLengthInDocumentLibrary="TRUE" SourceID="{{listid:DocumentsApproval}}" ColName="ntext4" RowOrdinal="0" Version="1" />
+            <Field Type="Note" DisplayName="Approval Status" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" Sortable="FALSE" ID="{25a1b0f0-41b6-4420-8ef4-0e2ec8df4823}" Name="ApprovalStatus" StaticName="ApprovalStatus" RichText="FALSE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" NumLines="6" UnlimitedLengthInDocumentLibrary="TRUE" SourceID="{{listid:DocumentsApproval}}" ColName="ntext3" RowOrdinal="0" Version="1" />
+            <Field Type="Number" DisplayName="TotalApprovers" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" ID="{23186abb-305e-4972-8972-ee04ea7e5616}" Name="TotalApprovers" StaticName="TotalApprovers" Decimals="0" Percentage="FALSE" SourceID="{{listid:DocumentsApproval}}" ColName="float2" RowOrdinal="0" Version="1">
+              <Default>0</Default>
+            </Field>
+            <Field Type="Number" DisplayName="TotalApproved" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" ID="{4d64600d-bd99-48c9-b2ae-c25b4e58945d}" Name="TotalApproved" StaticName="TotalApproved" Decimals="0" Percentage="FALSE" SourceID="{{listid:DocumentsApproval}}" ColName="float1" RowOrdinal="0" Version="1">
+              <Default>0</Default>
+            </Field>
+            <Field Type="Calculated" DisplayName="Progress" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="TRUE" CanToggleHidden="FALSE" CustomFormatter="{&quot;$schema&quot;:&quot;https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;attributes&quot;:{&quot;class&quot;:&quot;=if(@currentField == 100, 'sp-field-severity--good', if(@currentField &gt;= .1, 'sp-field-severity--low', 'sp-field-severity--warning')) + ' ms-fontColor-neutralSecondary'&quot;},&quot;children&quot;:[{&quot;elmType&quot;:&quot;span&quot;,&quot;style&quot;:{&quot;display&quot;:&quot;inline-block&quot;,&quot;padding&quot;:&quot;0 4px&quot;},&quot;attributes&quot;:{&quot;iconName&quot;:&quot;=if(@currentField == 100, 'CheckMark', if(@currentField &gt;= .1, 'Forward', 'ErrorBadge'))&quot;}},{&quot;elmType&quot;:&quot;span&quot;,&quot;txtContent&quot;:{&quot;operator&quot;:&quot;+&quot;,&quot;operands&quot;:[&quot;[$TotalApproved]&quot;,&quot; / &quot;,&quot;[$TotalApprovers]&quot;]}}]}&#xD;&#xA;" ID="{02b01211-6c0d-493e-8691-1475b6cc0730}" Name="ApprovedProgress" StaticName="ApprovedProgress" Format="DateOnly" LCID="1033" ResultType="Number" Percentage="FALSE" SourceID="{{listid:DocumentsApproval}}" ColName="sql_variant1" RowOrdinal="0" Version="5">
+              <Formula>=(([TotalApproved])/[TotalApprovers])*100</Formula>
+            </Field>
+            <Field Type="Choice" DisplayName="Document Type" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" ID="{0780a0ba-c385-4524-9eea-50457e062f04}" Name="DocumentType" StaticName="DocumentType" Format="Dropdown" FillInChoice="FALSE" SourceID="{{listid:DocumentsApproval}}" ColName="nvarchar14" RowOrdinal="0" Version="3">
+              <Default>Invoice</Default>
+              <CHOICES>
+                <CHOICE>Finance -------------------</CHOICE>
+                <CHOICE>Requisition</CHOICE>
+                <CHOICE>Purchase Order</CHOICE>
+                <CHOICE>Invoice</CHOICE>
+                <CHOICE>Vendor payment</CHOICE>
+                <CHOICE>Financial Document</CHOICE>
+                <CHOICE>Financial Report</CHOICE>
+                <CHOICE>Travel Reimbursement</CHOICE>
+                <CHOICE>Business Plan</CHOICE>
+                <CHOICE>Quality Assurance Documents ---------</CHOICE>
+                <CHOICE>Quality Manual</CHOICE>
+                <CHOICE>Business Procedures</CHOICE>
+                <CHOICE>Support Procedures</CHOICE>
+                <CHOICE>Work Instructions</CHOICE>
+                <CHOICE>Forms</CHOICE>
+                <CHOICE>Engineering -------------</CHOICE>
+                <CHOICE>Engineering Specifications</CHOICE>
+                <CHOICE>Engineering Change Request</CHOICE>
+                <CHOICE>Engineering Drawings</CHOICE>
+                <CHOICE>Technical Specifications</CHOICE>
+                <CHOICE>Purchasing -----------</CHOICE>
+                <CHOICE>Contractor Agreements</CHOICE>
+                <CHOICE>Non-Disclosure Agreement</CHOICE>
+                <CHOICE>Request for Information</CHOICE>
+                <CHOICE>Request for Proposal</CHOICE>
+                <CHOICE>Request for Quotation</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Text" DisplayName="Approval Button" EnforceUniqueValues="FALSE" Required="FALSE" Hidden="FALSE" ReadOnly="FALSE" CanToggleHidden="FALSE" CustomFormatter="{&#xD;&#xA;  &quot;$schema&quot;: &quot;https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json&quot;,&#xD;&#xA;  &quot;elmType&quot;: &quot;button&quot;,&#xD;&#xA;  &quot;txtContent&quot;: &quot;Get Approval&quot;,&#xD;&#xA;  &quot;customRowAction&quot;: {&#xD;&#xA;    &quot;action&quot;: &quot;setValue&quot;,&#xD;&#xA;    &quot;actionInput&quot;: {&#xD;&#xA;      &quot;Sign_x002d_off_x0020_status&quot;: &quot;Processing...&quot;&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;" ID="{e5b4a2a9-3f42-4aba-99fd-507b031affec}" Name="Approval_x0020_Button" StaticName="Approval_x0020_Button" MaxLength="255" SourceID="{{listid:DocumentsApproval}}" ColName="nvarchar16" RowOrdinal="0" Version="2" />
+            <Field ID="{5cf76f15-5ced-4ddc-b409-7134ff3c332f}" Type="TaxonomyFieldTypeMulti" DisplayName="Image Tags" Name="MediaServiceImageTags" Group="_Hidden" Hidden="FALSE" Indexed="FALSE" Sealed="FALSE" ReadOnly="FALSE" ShowInNewForm="TRUE" ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="FALSE" Viewable="FALSE" Json="FALSE" SourceID="{{listid:DocumentsApproval}}" StaticName="MediaServiceImageTags" ColName="int3" RowOrdinal="0" List="{listid:TaxonomyHiddenList}" WebId="{siteid}" ShowField="Term1033" Mult="TRUE" Sortable="FALSE" Version="4">
+              <Customization>
+                <ArrayOfProperty>
+                  <Property>
+                    <Name>SspId</Name>
+                    <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{sitecollectiontermstoreid}</Value>
+                  </Property>
+                  <Property>
+                    <Name>GroupId</Name>
+                  </Property>
+                  <Property>
+                    <Name>TermSetId</Name>
+                    <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{termsetid:System:Image Tags}</Value>
+                  </Property>
+                  <Property>
+                    <Name>AnchorId</Name>
+                    <Value xmlns:q3="http://www.w3.org/2001/XMLSchema" p4:type="q3:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">fba54fb3-c3e1-fe81-a776-ca4b69148c4d</Value>
+                  </Property>
+                  <Property>
+                    <Name>UserCreated</Name>
+                    <Value xmlns:q4="http://www.w3.org/2001/XMLSchema" p4:type="q4:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+                  </Property>
+                  <Property>
+                    <Name>Open</Name>
+                    <Value xmlns:q5="http://www.w3.org/2001/XMLSchema" p4:type="q5:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">true</Value>
+                  </Property>
+                  <Property>
+                    <Name>TextField</Name>
+                    <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p4:type="q6:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{7c51d632-27e0-f6f7-a5d6-ed67b68bd369}</Value>
+                  </Property>
+                  <Property>
+                    <Name>IsPathRendered</Name>
+                    <Value xmlns:q7="http://www.w3.org/2001/XMLSchema" p4:type="q7:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+                  </Property>
+                  <Property>
+                    <Name>IsKeyword</Name>
+                    <Value xmlns:q8="http://www.w3.org/2001/XMLSchema" p4:type="q8:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">false</Value>
+                  </Property>
+                  <Property>
+                    <Name>TargetTemplate</Name>
+                  </Property>
+                  <Property>
+                    <Name>CreateValuesInEditForm</Name>
+                    <Value xmlns:q9="http://www.w3.org/2001/XMLSchema" p4:type="q9:boolean" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">true</Value>
+                  </Property>
+                  <Property>
+                    <Name>IsDocTagsEnabled</Name>
+                  </Property>
+                  <Property>
+                    <Name>FilterAssemblyStrongName</Name>
+                    <Value xmlns:q10="http://www.w3.org/2001/XMLSchema" p4:type="q10:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Value>
+                  </Property>
+                  <Property>
+                    <Name>FilterClassName</Name>
+                    <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p4:type="q11:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">Microsoft.SharePoint.Taxonomy.TaxonomyField</Value>
+                  </Property>
+                  <Property>
+                    <Name>FilterMethodName</Name>
+                    <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p4:type="q12:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">GetFilteringHtml</Value>
+                  </Property>
+                  <Property>
+                    <Name>FilterJavascriptProperty</Name>
+                    <Value xmlns:q13="http://www.w3.org/2001/XMLSchema" p4:type="q13:string" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">FilteringJavascript</Value>
+                  </Property>
+                </ArrayOfProperty>
+              </Customization>
+            </Field>
+            <Field ID="{67aff0cf-8e19-43f2-9987-be89075e1467}" Type="Note" DisplayName="Extracted Text" Name="MediaServiceOCR" Group="_Hidden" Hidden="FALSE" Indexed="FALSE" Sealed="TRUE" ReadOnly="TRUE" ShowInNewForm="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInListSettings="FALSE" Viewable="FALSE" Json="FALSE" SourceID="{{listid:DocumentsApproval}}" StaticName="MediaServiceOCR" ColName="ntext9" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="34ad21eb-75bd-4544-8c73-0e08330291fe" Name="_ModerationComments" DisplayName="Approver Comments" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="cb19284a-cde7-4570-a980-1dab8bd74470" Name="_ExtendedDescription" DisplayName="Description" />
+            <pnp:FieldRef ID="fdc3b2ed-5bf2-4835-a4bc-b885f3396a61" Name="_ModerationStatus" Required="true" DisplayName="Approval Status" />
+            <pnp:FieldRef ID="ef991a83-108d-4407-8ee5-ccc0c3d836b9" Name="SharedWithUsers" DisplayName="Shared With" />
+            <pnp:FieldRef ID="d3c9caf7-044c-4c71-ae64-092981e54b33" Name="SharedWithDetails" DisplayName="Shared With Details" />
+            <pnp:FieldRef ID="d307dff3-340f-44a2-9f4b-fbfe1ba07459" Name="_CommentCount" DisplayName="Comment count" />
+            <pnp:FieldRef ID="db8d9d6d-dc9a-4fbd-85f3-4a753bfdc58c" Name="_LikeCount" DisplayName="Like count" />
+          </pnp:FieldRefs>
+          <pnp:DataRows UpdateBehavior="Overwrite">
+            <pnp:DataRow>
+              <pnp:DataValue FieldName="FileLeafRef">Nippon Steel - INV - 88890-A.pdf</pnp:DataValue>
+              <pnp:DataValue FieldName="_SourceUrl" />
+              <pnp:DataValue FieldName="_SharedFileIndex" />
+              <pnp:DataValue FieldName="Title" />
+              <pnp:DataValue FieldName="TemplateUrl" />
+              <pnp:DataValue FieldName="xd_ProgID" />
+              <pnp:DataValue FieldName="_ShortcutUrl" />
+              <pnp:DataValue FieldName="_ShortcutSiteId" />
+              <pnp:DataValue FieldName="_ShortcutWebId" />
+              <pnp:DataValue FieldName="_ShortcutUniqueId" />
+              <pnp:DataValue FieldName="_ExtendedDescription" />
+              <pnp:DataValue FieldName="InvoiceApprovers">i:0#.f|membership|annika.palma@evolvegs.ca,i:0#.f|membership|joe.smith@evolvegs.ca</pnp:DataValue>
+              <pnp:DataValue FieldName="Sign_x002d_off_x0020_status">Approved</pnp:DataValue>
+              <pnp:DataValue FieldName="Comments">
+Approver: Dave Johnson, David.Johnson@evolvegs.ca
+Response: Approve
+Request Date: Wednesday, November 30, 2022 12:25:29 AM
+Response Date: Wednesday, November 30, 2022 2:48:24 AM
+Response Comments: 
+Approver: Joe Smith, Joe.Smith@evolvegs.ca
+Response: Approve
+Request Date: Wednesday, November 30, 2022 2:48:32 AM
+Response Date: Wednesday, November 30, 2022 3:11:33 AM
+Response Comments: ready for payment</pnp:DataValue>
+              <pnp:DataValue FieldName="ApprovalStatus" />
+              <pnp:DataValue FieldName="TotalApprovers">2</pnp:DataValue>
+              <pnp:DataValue FieldName="TotalApproved">2</pnp:DataValue>
+              <pnp:DataValue FieldName="DocumentType">Invoice</pnp:DataValue>
+              <pnp:DataValue FieldName="Approval_x0020_Button" />
+              <pnp:DataValue FieldName="MediaServiceImageTags" />
+              <pnp:DataValue FieldName="lcf76f155ced4ddcb4097134ff3c332f" />
+              <pnp:DataValue FieldName="TaxCatchAll" />
+              <pnp:DataValue FieldName="MetaInfo">TotalApproved:DW|2.00000000000000
+vti_parserversion:SR|16.0.0.23109
+vti_decryptskipreason:IW|12
+Sign-off status:SW|Approved
+vti_shardwithdetails:SW|{"i:0#.f|membership|annika.palma@evolvegs.ca":{"DateTime":"\\/Date(1669767922801)\\/","LoginName":"guillermo.bustamante@evolvegs.ca"},"i:0#.f|membership|joe.smith@evolvegs.ca":{"DateTime":"\\/Date(1669767922801)\\/","LoginName":"guillermo.bustamante@evolvegs.ca"}}
+vti_previewinvalidtime:TX|30 Nov 2022 00:24:19 -0000
+vti_author:SR|i:0#.f|membership|annika.palma@evolvegs.ca
+vti_sprocsschemaversion:SR|16.0.785.0
+display_urn\:schemas-microsoft-com\:office\:office#SharedWithUsers:SW|Annika Palma;Joe Smith
+vti_dbschemaversion:SR|16.0.316.0
+DocumentType:SW|Invoice
+vti_timelastwnssent:TR|30 Nov 2022 03:12:18 -0000
+display_urn\:schemas-microsoft-com\:office\:office#InvoiceApprovers:SW|Annika Palma;Joe Smith
+vti_priorversioncreationtime:TR|30 Nov 2022 03:11:39 -0000
+vti_writevalidationtoken:SW|pKDKXbJi96UEMcLiufoNT2M1Zio=
+vti_modifiedby:SR|i:0#.f|membership|guillermo.bustamante@evolvegs.ca
+TotalApprovers:DW|2.00000000000000
+InvoiceApprovers:SW|13;#i:0#.f|membership|annika.palma@evolvegs.ca;#14;#i:0#.f|membership|joe.smith@evolvegs.ca
+SharedWithUsers:SW|13;#Annika Palma;#14;#Joe Smith
+vti_foldersubfolderitemcount:IR|0
+ContentTypeId:SW|0x010100C6FE4F2AFAD5404A922349869E79B6AE
+vti_iplabelpromotionversion:IW|0
+Comments:SW|\nApprover: Dave Johnson, David.Johnson@evolvegs.ca\r\nResponse: Approve\r\nRequest Date: Wednesday, November 30, 2022 12:25:29 AM\r\nResponse Date: Wednesday, November 30, 2022 2:48:24 AM\nResponse Comments: \nApprover: Joe Smith, Joe.Smith@evolvegs.ca\r\nResponse: Approve\r\nRequest Date: Wednesday, November 30, 2022 2:48:32 AM\r\nResponse Date: Wednesday, November 30, 2022 3:11:33 AM\nResponse Comments: ready for payment
+vti_folderitemcount:IR|0
+</pnp:DataValue>
+              <pnp:DataValue FieldName="Order">3900</pnp:DataValue>
+            </pnp:DataRow>
+          </pnp:DataRows>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-msmanaged-na-westus2-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-29.westus.logic.azure.com%252fworkflows%252f6bb94ceface04de7b9ef413645b9f6be%252ftriggers%252fWhen_a_file_is_created_or_modified_(properties_only)%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_a_file_is_created_or_modified_%252528properties_only%252529%25252Frun%25252C%25252Ftriggers%25252FWhen_a_file_is_created_or_modified_%252528properties_only%252529%25252Fread%2526sv%253d1.0%2526sig%253dfgS-Nuku8rnTkzmCtIxJDDmuO-vTPR1CDqBdGRUGn_g" ExpiresInDays="2" />
+            <pnp:Webhook ServerNotificationUrl="https://canadaeast1-0.pushnp.svc.ms/notifications?token=ebd7c994-8daf-47d2-a110-eca522728aa5" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+      </pnp:Lists>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
